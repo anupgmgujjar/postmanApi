@@ -223,7 +223,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"authTransactionId\": \"{{authTransactionId}}\",\n  \"securityValueHash\": \"647cbf5be076b93a54856f724bb163fa6429544eaf028e1a7b485c9d50bb852b\",\n  \"authMedium\": \"PHONE_SMS_OTP\"\n}",
+											"raw": "{\n  \"authTransactionId\": \"{{authTransactionId}}\",\n  \"securityValueHash\": \"542048962e6b8495c4b62f6ac7c3235885218e6e0e6bf995ef5c333de47beb93\",\n  \"authMedium\": \"PHONE_SMS_OTP\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -320,6 +320,158 @@
 														"auth-management",
 														"process",
 														"validate"
+													]
+												}
+											},
+											"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+											"code": 422,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+										}
+									]
+								},
+								{
+									"name": "Register authentication medium",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"securityValue\", pm.response.json().authMediumKey);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "x-client-id",
+												"value": "dfsdf",
+												"type": "text"
+											},
+											{
+												"key": "x-customer-id",
+												"value": "sdfdsf",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"customerId\": \"CUS_0d3659c9857b4172bccab011366ba8b6\",\n  \"authMedium\": \"BIOMETRIC\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/v1/auth-management/medium/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"v1",
+												"auth-management",
+												"medium",
+												"register"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Successful Response",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customerId\": \"<string>\",\n  \"authMedium\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/auth/v1/auth-management/medium/register",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"v1",
+														"auth-management",
+														"medium",
+														"register"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"authMediumKey\": \"<string>\"\n}"
+										},
+										{
+											"name": "Validation Error",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"customerId\": \"<string>\",\n  \"authMedium\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/auth/v1/auth-management/medium/register",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"auth",
+														"v1",
+														"auth-management",
+														"medium",
+														"register"
 													]
 												}
 											},
@@ -485,82 +637,29 @@
 											"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
 										}
 									]
-								}
-							]
-						},
-						{
-							"name": "Register authentication medium",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.environment.set(\"securityValue\", pm.response.json().authMediumKey);"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
-							"request": {
-								"method": "PATCH",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "Accept",
-										"value": "application/json"
-									},
-									{
-										"key": "x-client-id",
-										"value": "dfsdf",
-										"type": "text"
-									},
-									{
-										"key": "x-customer-id",
-										"value": "sdfdsf",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"customerId\": \"CUS_0d3659c9857b4172bccab011366ba8b6\",\n  \"authMedium\": \"BIOMETRIC\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
 								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/v1/auth-management/medium/register",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"v1",
-										"auth-management",
-										"medium",
-										"register"
-									]
-								}
-							},
-							"response": [
 								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "PATCH",
+									"name": "Fetch Auth Customer_details",
+									"request": {
+										"method": "POST",
 										"header": [
 											{
-												"key": "Accept",
+												"key": "accept",
 												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "x-customer-id",
+												"value": "8b6988a138374252b3ff67efeb10f00cs",
+												"type": "text"
 											}
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n  \"customerId\": \"<string>\",\n  \"authMedium\": \"<string>\"\n}",
+											"raw": "{\n   \"customerId\":\"{{customerId}}\"\n\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -568,7 +667,7 @@
 											}
 										},
 										"url": {
-											"raw": "{{baseUrl}}/auth/v1/auth-management/medium/register",
+											"raw": "{{baseUrl}}/auth/v1/auth-management/customer-details/CUSTOMER_ID",
 											"host": [
 												"{{baseUrl}}"
 											],
@@ -576,67 +675,12 @@
 												"auth",
 												"v1",
 												"auth-management",
-												"medium",
-												"register"
+												"customer-details",
+												"CUSTOMER_ID"
 											]
 										}
 									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										}
-									],
-									"cookie": [],
-									"body": "{\n  \"authMediumKey\": \"<string>\"\n}"
-								},
-								{
-									"name": "Validation Error",
-									"originalRequest": {
-										"method": "PATCH",
-										"header": [
-											{
-												"key": "Accept",
-												"value": "application/json"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n  \"customerId\": \"<string>\",\n  \"authMedium\": \"<string>\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/auth/v1/auth-management/medium/register",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"auth",
-												"v1",
-												"auth-management",
-												"medium",
-												"register"
-											]
-										}
-									},
-									"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-									"code": 422,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										}
-									],
-									"cookie": [],
-									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
+									"response": []
 								}
 							]
 						},
@@ -788,50 +832,6 @@
 									"body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}"
 								}
 							]
-						},
-						{
-							"name": "Fetch Auth Customer_details",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "accept",
-										"value": "application/json"
-									},
-									{
-										"key": "Content-Type",
-										"value": "application/json"
-									},
-									{
-										"key": "x-customer-id",
-										"value": "8b6988a138374252b3ff67efeb10f00cs",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n   \"customerId\":\"{{customerId}}\"\n\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/v1/auth-management/customer-details/CUSTOMER_ID",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"v1",
-										"auth-management",
-										"customer-details",
-										"CUSTOMER_ID"
-									]
-								}
-							},
-							"response": []
 						}
 					]
 				}
